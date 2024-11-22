@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-Hans-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script src="./angularjs/angular.js"></script>
 </head>
-<body>
-    
-    <script src="./gong.js"></script>
+
+<body ng-app="app" ng-controller="MainCtrl">
+    大帅 <br>
+    选择今天的时间，用来测试日期选择器：
+    <input type="datetime-local" ng-model="pageTime">
+
+    <div>
+        <ul>
+            <li ng-repeat="item in yearMonthDay">{{ item }}</li>
+        </ul>
+        <ul>
+            <li ng-repeat="item in hoursArr">{{ item }}</li>
+        </ul>
+    </div>
+    <script src="./src/gong.js"></script>
+    <script src="./src/app.js"></script>
 </body>
+
 </html>
