@@ -2,16 +2,34 @@ const app = angular.module("app", []);
 
 app.controller("MainCtrl", function ($scope) {
   $scope.name = "World";
-  console.log(`MainCtrl`);
-  const pwoe = 2323;
-  pwoe = 'abc';
-  // $scope.$watch("pageTime", (newVal) => {
-  //   if (newVal) {
-        
-  //   }
-  // });
-  // const yearMonthDay = renderYearMonthDay();
-  // const hoursArr = renderHours(0);
-  // $scope.yearMonthDay = yearMonthDay;
-  // $scope.hoursArr = hoursArr;
+  $scope.$watch("pageTime", (newVal) => {
+    if (newVal) {
+      today = newVal;
+      run();
+    }
+  });
+  run({today});
+  function run({today}) {
+    const { oneDayDateArr, dayDate } = start({
+      startHours,
+      endHours,
+      step,
+      day,
+      today,
+    });
+
+    const yearMonthDay = dayDate;
+    const hoursArr = oneDayDateArr;
+    // const yearMonthDay = renderDay(dayDate);
+    // const hoursArr = renderHours(oneDayDateArr);
+    $scope.yearMonthDay = yearMonthDay;
+    $scope.hoursArr = hoursArr;
+  }
+
+  $scope.clickYearMonthDay = (ymd) => {
+    run();
+  };
+  $scope.clickOneDay = (oneDate) => {
+    run({today: oneDate});
+  }
 });

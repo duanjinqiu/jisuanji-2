@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-Hans-CN">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <script src="./angularjs/angular.js"></script>
-</head>
+    <style>
+      .flex-box {
+        display: flex;
+      }
+      .left-box,
+      .right-box {
+        width: 48%;
+      }
+      .left-box > li,
+      .right-box > li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
 
-<body ng-app="app" ng-controller="MainCtrl">
-    大帅 <br>
-    选择今天的时间，用来测试日期选择器：
-    <input type="datetime-local" ng-model="pageTime">
+  <body ng-app="app" ng-controller="MainCtrl">
+    大帅 <br />
+
+    <div class="flex-box box">
+      <ul class="left-box">
+        <li ng-repeat="item in yearMonthDay" ng-click="clickYearMonthDay(item)">{{ item | date: 'yyyy-MM-dd'}}</li>
+      </ul>
+      <ul class="right-box">
+        <li ng-repeat="item in hoursArr" ng-click="clickOneDay(item)">{{ item.start | date: 'HH:mm' }} - {{ item.end | date: 'HH:mm' }}</li>
+      </ul>
+    </div>
 
     <div>
-        <ul>
-            <li ng-repeat="item in yearMonthDay">{{ item }}</li>
-        </ul>
-        <ul>
-            <li ng-repeat="item in hoursArr">{{ item }}</li>
-        </ul>
+      选择今天的时间，用来测试日期选择器：
+      <input type="datetime-local" ng-model="pageTime" />
     </div>
     <script src="./src/gong.js"></script>
     <script src="./src/app.js"></script>
-</body>
-
+  </body>
 </html>
